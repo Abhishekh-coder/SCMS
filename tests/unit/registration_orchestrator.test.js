@@ -40,7 +40,10 @@ describe('Sprint 2A - Identity Registration Pipeline Unit Tests', () => {
     });
 
     // Wait for event emitter
-    await new Promise((resolve) => setTimeout(resolve, 50));
+    for (let i = 0; i < 20; i++) {
+      if (receivedPayload) break;
+      await new Promise((resolve) => setTimeout(resolve, 25));
+    }
 
     assert.ok(receivedPayload);
     assert.strictEqual(receivedPayload.userUuid, '9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d');

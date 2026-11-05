@@ -9,7 +9,7 @@
     "dev": "node --watch server.js",
     "dev:backend": "node --watch server.js",
     "seed:institution": "node ../scripts/seed.js",
-    "test": "node --test ../tests/unit/*.test.js"
+    "test": "node --test --test-concurrency=1 ../tests/unit/*.test.js"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",

@@ -62,7 +62,10 @@ describe('Phase 5 - Analytics & Reporting Platform Unit Tests', () => {
       occurredAt: new Date().toISOString()
     });
 
-    await new Promise((resolve) => setTimeout(resolve, 50));
+    for (let i = 0; i < 20; i++) {
+      if (handled) break;
+      await new Promise((resolve) => setTimeout(resolve, 25));
+    }
     assert.strictEqual(handled, true);
 
     eventPublisher.removeListener('ComplaintSubmitted', listener);

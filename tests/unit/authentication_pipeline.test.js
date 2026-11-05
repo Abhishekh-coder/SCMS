@@ -113,7 +113,10 @@ describe('Sprint 2B - Authentication Pipeline & JWT Security Unit Tests', () => 
         occurredAt: new Date().toISOString()
       });
 
-      await new Promise((resolve) => setTimeout(resolve, 50));
+      for (let i = 0; i < 20; i++) {
+        if (eventCaptured) break;
+        await new Promise((resolve) => setTimeout(resolve, 25));
+      }
       assert.strictEqual(eventCaptured, true);
 
       eventPublisher.removeListener('TokenReplayDetected', handler);

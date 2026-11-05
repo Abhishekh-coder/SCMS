@@ -71,7 +71,10 @@ describe('Phase 2 - College Master Data Unit Tests', () => {
 
     await eventPublisher.publish('MasterDataUpdated', { domain: 'depts_tenant_campus_01' });
 
-    await new Promise((resolve) => setTimeout(resolve, 50));
+    for (let i = 0; i < 20; i++) {
+      if (!referenceDataService.cache.has('depts_tenant_campus_01')) break;
+      await new Promise((resolve) => setTimeout(resolve, 25));
+    }
     assert.strictEqual(referenceDataService.cache.has('depts_tenant_campus_01'), false);
   });
 });
