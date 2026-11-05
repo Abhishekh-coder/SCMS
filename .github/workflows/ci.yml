@@ -1,0 +1,27 @@
+name: CCMS Production CI Build & Automated Test Pipeline
+
+on:
+  push:
+    branches: [ main, master, develop ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js v24
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: 'npm'
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Run Full Unit & Integration Test Suite
+        run: |
+          node --test tests/unit/backend.test.js tests/unit/schemas.test.js tests/unit/registration_orchestrator.test.js tests/unit/authentication_pipeline.test.js tests/unit/authorization_engine.test.js tests/unit/master_data.test.js tests/unit/complaint_engine.test.js tests/unit/notification_engine.test.js tests/unit/analytics_engine.test.js tests/unit/ai_engine.test.js tests/unit/admin_control_plane.test.js tests/performance/release_gate.test.js

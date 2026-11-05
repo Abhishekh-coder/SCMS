@@ -1,0 +1,42 @@
+{
+  "name": "DefaultCampusComplaintWorkflow",
+  "initialState": "SUBMITTED",
+  "states": {
+    "SUBMITTED": {
+      "allowedTransitions": ["CATEGORIZED", "ASSIGNED", "CANCELLED", "REJECTED", "RETURNED_FOR_CORRECTION"]
+    },
+    "CATEGORIZED": {
+      "allowedTransitions": ["ASSIGNED", "CANCELLED", "REJECTED", "RETURNED_FOR_CORRECTION"]
+    },
+    "ASSIGNED": {
+      "allowedTransitions": ["IN_PROGRESS", "FORWARDED", "ESCALATED", "RESOLVED", "REJECTED", "RETURNED_FOR_CORRECTION"]
+    },
+    "IN_PROGRESS": {
+      "allowedTransitions": ["FORWARDED", "ESCALATED", "RESOLVED", "REJECTED", "RETURNED_FOR_CORRECTION"]
+    },
+    "FORWARDED": {
+      "allowedTransitions": ["IN_PROGRESS", "ESCALATED", "RESOLVED", "REJECTED", "RETURNED_FOR_CORRECTION"]
+    },
+    "ESCALATED": {
+      "allowedTransitions": ["IN_PROGRESS", "RESOLVED", "ESCALATED", "REJECTED", "RETURNED_FOR_CORRECTION"]
+    },
+    "RESOLVED": {
+      "allowedTransitions": ["CLOSED", "REOPENED", "ESCALATED"]
+    },
+    "REOPENED": {
+      "allowedTransitions": ["IN_PROGRESS", "FORWARDED", "ESCALATED", "RESOLVED", "REJECTED", "RETURNED_FOR_CORRECTION"]
+    },
+    "RETURNED_FOR_CORRECTION": {
+      "allowedTransitions": ["SUBMITTED", "IN_PROGRESS", "CANCELLED"]
+    },
+    "REJECTED": {
+      "allowedTransitions": ["REOPENED"]
+    },
+    "CLOSED": {
+      "allowedTransitions": []
+    },
+    "CANCELLED": {
+      "allowedTransitions": []
+    }
+  }
+}

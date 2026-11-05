@@ -1,0 +1,51 @@
+# Dependencies
+node_modules/
+.pnpm-store/
+
+# Environment and Secret files
+.env
+.env.*
+*.env
+*.env.*
+!.env.example
+!**/.env.example
+
+# Logs
+logs/*.log
+logs/**/*.log
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Storage uploads
+storage/local/*/*
+!storage/local/*/.gitkeep
+storage/archive/*
+!storage/archive/.gitkeep
+storage/processed/*
+!storage/processed/.gitkeep
+storage/failed/*
+!storage/failed/.gitkeep
+
+# Operating System
+.DS_Store
+Thumbs.db
+
+# IDEs
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.swp
+
+# Build output
+dist/
+build/
+coverage/
+
+# Power BI temp files
+*.tmp
+analytics/powerbi/pbix/*.tmp

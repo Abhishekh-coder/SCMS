@@ -1,0 +1,43 @@
+openapi: 3.0.3
+info:
+  title: CCMS Authentication API v1
+  version: 1.0.0
+  description: Authentication and Token Management Endpoints for Campus Complaint Management System
+paths:
+  /api/v1/auth/login:
+    post:
+      summary: User Login
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [email, password]
+              properties:
+                email:
+                  type: string
+                  format: email
+                password:
+                  type: string
+      responses:
+        '200':
+          description: Successful authentication
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  accessToken:
+                    type: string
+                  user:
+                    type: object
+
+  /api/v1/auth/refresh:
+    post:
+      summary: Refresh Access Token
+      responses:
+        '200':
+          description: Token refreshed

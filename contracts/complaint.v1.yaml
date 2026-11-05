@@ -1,0 +1,42 @@
+openapi: 3.0.3
+info:
+  title: CCMS Complaints API v1
+  version: 1.0.0
+  description: Complaint Registration, Tracking, SLA Management, and Resolution API
+paths:
+  /api/v1/complaints:
+    get:
+      summary: List Complaints with Filtering & Pagination
+      responses:
+        '200':
+          description: List of complaints
+    post:
+      summary: Submit New Complaint
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [title, description, category, departmentId]
+              properties:
+                title:
+                  type: string
+                description:
+                  type: string
+                category:
+                  type: string
+                departmentId:
+                  type: string
+                priority:
+                  type: string
+                  enum: [low, medium, high, urgent]
+      responses:
+        '201':
+          description: Complaint created
+  /api/v1/complaints/{id}:
+    get:
+      summary: Get Complaint Details by ID
+      responses:
+        '200':
+          description: Detailed complaint object
